@@ -1,9 +1,5 @@
 deps_config := \
 	lib/Kconfig \
-	drivers/virtio/Kconfig \
-	drivers/lguest/Kconfig \
-	virt/kvm/Kconfig \
-	arch/x86/kvm/Kconfig \
 	drivers/crypto/Kconfig \
 	crypto/async_tx/Kconfig \
 	crypto/Kconfig \
@@ -18,7 +14,7 @@ deps_config := \
 	kernel/trace/Kconfig \
 	mm/Kconfig.debug \
 	lib/Kconfig.debug \
-	arch/x86/Kconfig.debug \
+	arch/arm/Kconfig.debug \
 	fs/dlm/Kconfig \
 	fs/nls/Kconfig \
 	fs/partitions/Kconfig \
@@ -82,7 +78,6 @@ deps_config := \
 	fs/ext3/Kconfig \
 	fs/ext2/Kconfig \
 	fs/Kconfig \
-	drivers/firmware/Kconfig \
 	drivers/platform/x86/Kconfig \
 	drivers/platform/Kconfig \
 	drivers/staging/zram/Kconfig \
@@ -480,29 +475,75 @@ deps_config := \
 	net/unix/Kconfig \
 	net/packet/Kconfig \
 	net/Kconfig \
+	kernel/power/Kconfig \
 	fs/Kconfig.binfmt \
-	drivers/pci/hotplug/Kconfig \
-	drivers/pcmcia/Kconfig \
-	drivers/mca/Kconfig \
-	drivers/eisa/Kconfig \
-	drivers/pci/Kconfig \
-	drivers/pci/pcie/aer/Kconfig.debug \
-	drivers/pci/pcie/aer/Kconfig \
-	drivers/pci/pcie/Kconfig \
-	drivers/idle/Kconfig \
 	drivers/cpuidle/Kconfig \
 	drivers/cpufreq/Kconfig \
-	arch/x86/kernel/cpu/cpufreq/Kconfig \
-	drivers/sfi/Kconfig \
-	drivers/acpi/Kconfig \
-	kernel/power/Kconfig \
-	kernel/Kconfig.hz \
 	mm/Kconfig \
 	kernel/Kconfig.preempt \
-	arch/x86/Kconfig.cpu \
-	arch/x86/lguest/Kconfig \
-	arch/x86/xen/Kconfig \
 	kernel/time/Kconfig \
+	drivers/pcmcia/Kconfig \
+	drivers/pci/Kconfig \
+	arch/arm/common/Kconfig \
+	arch/arm/Kconfig-nommu \
+	arch/arm/mm/Kconfig \
+	arch/arm/mach-bcmring/Kconfig \
+	arch/arm/mach-w90x900/Kconfig \
+	arch/arm/mach-u300/Kconfig \
+	arch/arm/mach-msm/Kconfig \
+	arch/arm/mach-ks8695/Kconfig \
+	arch/arm/mach-davinci/Kconfig \
+	arch/arm/mach-ns9xxx/Kconfig \
+	arch/arm/mach-netx/Kconfig \
+	arch/arm/mach-nomadik/Kconfig \
+	arch/arm/mach-mxc91231/Kconfig \
+	arch/arm/mach-mx25/Kconfig \
+	arch/arm/mach-mx3/Kconfig \
+	arch/arm/mach-mx2/Kconfig \
+	arch/arm/mach-mx1/Kconfig \
+	arch/arm/plat-mxc/Kconfig \
+	arch/arm/mach-at91/Kconfig \
+	arch/arm/mach-realview/Kconfig \
+	arch/arm/mach-aaec2000/Kconfig \
+	arch/arm/mach-versatile/Kconfig \
+	arch/arm/mach-h720x/Kconfig \
+	arch/arm/mach-lh7a40x/Kconfig \
+	arch/arm/mach-s5pc100/Kconfig \
+	arch/arm/plat-stmp3xxx/Kconfig \
+	arch/arm/mach-s3c6410/Kconfig \
+	arch/arm/mach-s3c6400/Kconfig \
+	arch/arm/mach-s3c2443/Kconfig \
+	arch/arm/mach-s3c2442/Kconfig \
+	arch/arm/mach-s3c2440/Kconfig \
+	arch/arm/mach-s3c2412/Kconfig \
+	arch/arm/mach-s3c2410/Kconfig \
+	arch/arm/mach-s3c2400/Kconfig \
+	arch/arm/plat-s5pc1xx/Kconfig \
+	arch/arm/plat-s3c/Kconfig \
+	arch/arm/plat-s3c64xx/Kconfig \
+	arch/arm/plat-s3c24xx/Kconfig \
+	arch/arm/mach-kirkwood/Kconfig \
+	arch/arm/mach-orion5x/Kconfig \
+	arch/arm/mach-omap2/Kconfig \
+	arch/arm/mach-omap1/Kconfig \
+	arch/arm/plat-omap/Kconfig \
+	arch/arm/mach-sa1100/Kconfig \
+	arch/arm/mach-mmp/Kconfig \
+	arch/arm/plat-pxa/Kconfig \
+	arch/arm/mach-pxa/Kconfig \
+	arch/arm/mach-mv78xx0/Kconfig \
+	arch/arm/mach-loki/Kconfig \
+	arch/arm/mach-ixp23xx/Kconfig \
+	arch/arm/mach-ixp2000/Kconfig \
+	arch/arm/mach-ixp4xx/Kconfig \
+	arch/arm/mach-iop13xx/Kconfig \
+	arch/arm/mach-iop33x/Kconfig \
+	arch/arm/mach-iop32x/Kconfig \
+	arch/arm/mach-integrator/Kconfig \
+	arch/arm/mach-gemini/Kconfig \
+	arch/arm/mach-footbridge/Kconfig \
+	arch/arm/mach-ep93xx/Kconfig \
+	arch/arm/mach-clps711x/Kconfig \
 	kernel/Kconfig.freezer \
 	block/Kconfig.iosched \
 	block/Kconfig \
@@ -510,7 +551,7 @@ deps_config := \
 	arch/Kconfig \
 	usr/Kconfig \
 	init/Kconfig \
-	arch/x86/Kconfig
+	arch/arm/Kconfig
 
 include/config/auto.conf: \
 	$(deps_config)
@@ -518,7 +559,7 @@ include/config/auto.conf: \
 ifneq "$(KERNELVERSION)" "2.6.32.9"
 include/config/auto.conf: FORCE
 endif
-ifneq "$(ARCH)" "x86_64"
+ifneq "$(ARCH)" "arm"
 include/config/auto.conf: FORCE
 endif
 
